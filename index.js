@@ -6,6 +6,7 @@ require("./prod");
 // database
 const mongoose = require("mongoose");
 const uri = `mongodb+srv://corbett:zpTiC0denyk3iesn@cluster0.ll84g.mongodb.net/test`;
+
 // const uri = `mongodb://localhost/playground`;
 mongoose.connect(uri, {
   useNewUrlParser: true,
@@ -16,6 +17,7 @@ db.on("error", console.error.bind(console, "Connection error"));
 db.once("open", function () {
   console.log("We are connected");
 });
+
 const Schema = mongoose.Schema({
   name: String,
   age: Number,
@@ -27,6 +29,7 @@ const Schema = mongoose.Schema({
   },
   documentType: Number,
   documentNumber: Number,
+  adminId: Number
 });
 
 const User = mongoose.model("userModel", Schema);
@@ -38,6 +41,7 @@ async function getAllUsers() {
 }
 
 async function addData(data) {
+  console.log("data we are going to add ", data);
   const user = new User(data);
   return await user.save();
 }
