@@ -57,6 +57,10 @@ app.post("/users", async (req, res) => {
   res.send(await getAllUsers());
 });
 
+app.get("/users/:id", async (req, res) => {
+  res.send(await User.find({ adminId: req.params.id }));
+});
+
 app.get("/users", async (req, res) => {
   res.send(await getAllUsers());
 });
